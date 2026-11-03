@@ -1,0 +1,577 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweet Crumbs - Cake Shop</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f3eaff;
+            color: #45245e;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #d9c0f5;
+            padding: 22px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #542477;
+        }
+
+        header p {
+            color: #684080;
+            margin-top: 5px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #eadbff;
+            padding: 14px;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #542477;
+            font-weight: bold;
+            margin: 0 18px;
+        }
+
+        nav a:hover {
+            color: #a044c5;
+        }
+
+        section {
+            padding: 35px 7%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #65358a;
+            margin-bottom: 20px;
+        }
+
+        /* 1. Rounded Corners */
+        .hero {
+            background: white;
+            border-radius: 25px;
+            margin: 30px auto;
+            max-width: 1100px;
+            padding: 35px 20px;
+            box-shadow: 0 5px 15px rgba(80, 40, 100, 0.12);
+        }
+
+        .hero h2 {
+            font-size: 30px;
+        }
+
+        .hero p {
+            margin-bottom: 20px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #9b65c5;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #75439b;
+        }
+
+        /* 2. Border Image */
+        .special-box {
+            background: white;
+            padding: 25px;
+            margin: 20px auto;
+            max-width: 850px;
+
+            border: 10px solid transparent;
+            border-image-source: linear-gradient(
+                45deg, #b47bd9, #f2a6d8, #8b5bb5
+            );
+            border-image-slice: 1;
+        }
+
+        /* 3. Multiple Backgrounds */
+        .offer {
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.7) 2px, transparent 3px),
+                linear-gradient(120deg, #d9c0f5, #f8dff0);
+
+            background-position: 0 0, center;
+            background-repeat: repeat, no-repeat;
+            background-size: 25px 25px, cover;
+
+            padding: 35px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        /* 4. Background Size */
+        .banner {
+            background-image:
+                linear-gradient(rgba(55, 20, 75, 0.5), rgba(55, 20, 75, 0.5)),
+                url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200");
+
+            background-size: cover, cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            color: white;
+            padding: 65px 20px;
+            border-radius: 20px;
+            margin: 20px auto;
+            max-width: 1100px;
+        }
+
+        .banner h2 {
+            color: white;
+            font-size: 32px;
+        }
+
+        /* Cake Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 22px;
+            margin-top: 25px;
+        }
+
+        .cake-card {
+            background: white;
+            border-radius: 18px;
+            padding: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(90, 45, 120, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .cake-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .cake-card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .cake-card h3 {
+            margin-top: 12px;
+            color: #65358a;
+        }
+
+        .price {
+            color: #a044c5;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        /* 5. Form Pseudo-Classes */
+        .order-form {
+            background: white;
+            max-width: 550px;
+            margin: 20px auto;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 12px rgba(90, 45, 120, 0.12);
+        }
+
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 9px 0;
+            border: 2px solid #d5b8ed;
+            border-radius: 9px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        /* Focus pseudo-class */
+        .order-form input:focus,
+        .order-form select:focus,
+        .order-form textarea:focus {
+            border-color: #8d4db5;
+            box-shadow: 0 0 5px #c99ce8;
+        }
+
+        /* Required pseudo-class */
+        .order-form input:required {
+            background-color: #fcf8ff;
+        }
+
+        /* Valid pseudo-class */
+        .order-form input:valid {
+            border-color: #63a878;
+        }
+
+        /* Invalid pseudo-class */
+        .order-form input:invalid {
+            border-color: #d98b9b;
+        }
+
+        .order-form button {
+            background: #9b65c5;
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .order-form button:hover {
+            background: #75439b;
+        }
+
+        /* 6. Adjacent Sibling Combinator */
+        .menu-list {
+            max-width: 700px;
+            margin: 20px auto;
+        }
+
+        .menu-item {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .itemImg {
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 15px;
+            opacity: 0;
+            max-height: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Image appears when the cake name is hovered */
+        .menu-item:hover + .itemImg {
+            opacity: 1;
+            max-height: 140px;
+        }
+
+        /* 7. nth-child() Table Styling */
+        table {
+            width: 90%;
+            max-width: 850px;
+            margin: 25px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px;
+            border: 1px solid #dfc9f0;
+        }
+
+        th {
+            background: #a878ce;
+            color: white;
+        }
+
+        /* Odd rows */
+        tr:nth-child(odd) {
+            background: #f3eaff;
+        }
+
+        /* Even rows */
+        tr:nth-child(even) {
+            background: #ffffff;
+        }
+
+        /* Table hover */
+        tr:hover {
+            background: #e2c9f7;
+        }
+
+        /* Footer */
+        footer {
+            background: #d9c0f5;
+            color: #542477;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 6px;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+            table {
+                width: 100%;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Sweet Crumbs</h1>
+        <p>Freshly Baked Happiness in Every Bite!</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#cakes">Cakes</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">Order</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- Home -->
+    <section id="home">
+        <div class="hero">
+            <h2>Welcome to Sweet Crumbs!</h2>
+            <p>
+                Discover delicious cakes made with love and the finest ingredients.
+                Make every celebration special with our freshly baked cakes.
+            </p>
+            <a href="#cakes" class="shop-btn">Explore Cakes</a>
+        </div>
+    </section>
+
+    <!-- Border Image Demonstration -->
+    <section>
+        <div class="special-box">
+            <h2>Our Speciality</h2>
+            <p>
+                From birthdays to anniversaries, we prepare beautiful and
+                delicious cakes for every special occasion.
+            </p>
+        </div>
+    </section>
+
+    <!-- Multiple Backgrounds Demonstration -->
+    <section>
+        <div class="offer">
+            <h2>Sweet Offers!</h2>
+            <p>Enjoy delicious cakes and make your celebrations memorable.</p>
+            <h3>Special cakes for special moments!</h3>
+        </div>
+    </section>
+
+    <!-- Background Size Demonstration -->
+    <section>
+        <div class="banner">
+            <h2>Made with Love and Fresh Ingredients</h2>
+            <p>Every cake is baked fresh to make your day sweeter.</p>
+        </div>
+    </section>
+
+    <!-- Cake Gallery -->
+    <section id="cakes">
+        <h2>Our Delicious Cakes</h2>
+        <p>Choose your favourite cake from our collection.</p>
+
+        <div class="gallery">
+
+            <div class="cake-card">
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
+                    alt="Chocolate Cake"
+                    onerror="this.onerror=null;this.src='https://images.pexels.com/photos/4403073/pexels-photo-4403073.jpeg?auto=compress&cs=tinysrgb&w=600';">
+                <h3>Chocolate Cake</h3>
+                <p>Rich and creamy chocolate delight.</p>
+                <p class="price">₹650</p>
+            </div>
+
+            <div class="cake-card">
+                <img
+                    src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600"
+                    alt="Black Forest Cake"
+                    onerror="this.onerror=null;this.src='https://images.pexels.com/photos/12933560/pexels-photo-12933560.jpeg?auto=compress&cs=tinysrgb&w=600';">
+                <h3>Black Forest</h3>
+                <p>Chocolate layers with fresh cream.</p>
+                <p class="price">₹750</p>
+            </div>
+
+            <div class="cake-card">
+                <img
+                    src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600"
+                    alt="Strawberry Cake"
+                    onerror="this.onerror=null;this.src='https://images.pexels.com/photos/6990074/pexels-photo-6990074.jpeg?auto=compress&cs=tinysrgb&w=600';">
+                <h3>Strawberry Cake</h3>
+                <p>Soft cake topped with fresh strawberries.</p>
+                <p class="price">₹600</p>
+            </div>
+
+            <div class="cake-card">
+                <img
+                    src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=600"
+                    alt="Vanilla Cake"
+                    onerror="this.onerror=null;this.src='https://images.pexels.com/photos/31336127/pexels-photo-31336127.jpeg?auto=compress&cs=tinysrgb&w=600';">
+                <h3>Vanilla Cake</h3>
+                <p>Classic vanilla cake with smooth cream.</p>
+                <p class="price">₹550</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cake Menu -->
+    <section id="menu">
+        <h2>Explore Our Cake Menu</h2>
+        <p>Hover over a cake name to view its image.</p>
+
+        <div class="menu-list">
+
+            <div class="menu-item">Chocolate Truffle Cake</div>
+            <img class="itemImg"
+                 src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400"
+                 alt="Chocolate Truffle Cake">
+
+            <div class="menu-item">Strawberry Cream Cake</div>
+            <img class="itemImg"
+                 src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=400"
+                 alt="Strawberry Cream Cake">
+
+            <div class="menu-item">Vanilla Celebration Cake</div>
+            <img class="itemImg"
+                 src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?w=400"
+                 alt="Vanilla Celebration Cake">
+
+        </div>
+    </section>
+
+    <!-- Cake Price Table -->
+    <section>
+        <h2>Cake Price List</h2>
+
+        <table>
+            <tr>
+                <th>Cake Name</th>
+                <th>Size</th>
+                <th>Price</th>
+            </tr>
+
+            <tr>
+                <td>Chocolate Cake</td>
+                <td>1 Kg</td>
+                <td>₹650</td>
+            </tr>
+
+            <tr>
+                <td>Black Forest</td>
+                <td>1 Kg</td>
+                <td>₹750</td>
+            </tr>
+
+            <tr>
+                <td>Strawberry Cake</td>
+                <td>1 Kg</td>
+                <td>₹600</td>
+            </tr>
+
+            <tr>
+                <td>Vanilla Cake</td>
+                <td>1 Kg</td>
+                <td>₹550</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Order Form -->
+    <section id="order">
+        <h2>Place Your Cake Order</h2>
+
+        <form class="order-form" onsubmit="placeOrder(event)">
+
+            <input type="text"
+                   placeholder="Enter your name"
+                   required
+                   minlength="3">
+
+            <input type="email"
+                   placeholder="Enter your email"
+                   required>
+
+            <input type="tel"
+                   placeholder="Enter your phone number"
+                   pattern="[0-9]{10}"
+                   required>
+
+            <select required>
+                <option value="">Select Your Cake</option>
+                <option>Chocolate Cake</option>
+                <option>Black Forest Cake</option>
+                <option>Strawberry Cake</option>
+                <option>Vanilla Cake</option>
+            </select>
+
+            <input type="date" required>
+
+            <textarea placeholder="Additional instructions"
+                      rows="4"></textarea>
+
+            <button type="submit">Place Order</button>
+
+        </form>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: sweetcrumbs@gmail.com</p>
+        <p>Phone: 9876543210</p>
+        <p>Address: Coimbatore, Tamil Nadu</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Sweet Crumbs Cake Shop. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function placeOrder(event) {
+            event.preventDefault();
+            alert("Thank you! Your cake order has been received.");
+        }
+    </script>
+
+</body>
+</html>
+
+
